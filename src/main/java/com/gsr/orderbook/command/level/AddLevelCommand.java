@@ -25,10 +25,10 @@ public class AddLevelCommand implements LevelCommand {
     @Override
     public boolean execute(NavigableMap<BigDecimal, Level> levels, Level level, Order order, Map<Order, OrderBookEntry> orderEntries) {
         try {
+            levels.put(level.getPrice(), level);
             OrderBookEntry orderBookEntry = new OrderBookEntry(order, level);
             level.setHead(orderBookEntry);
             level.setTail(orderBookEntry);
-            levels.put(level.getPrice(), level);
             orderEntries.put(order, orderBookEntry);
             if (BUY.equals(level.getType())) {
                 minBuyLevel = new Level(levels.lastKey());

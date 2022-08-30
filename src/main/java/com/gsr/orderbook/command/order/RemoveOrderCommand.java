@@ -40,11 +40,6 @@ public class RemoveOrderCommand implements OrderBookCommand {
             if (orderBookEntry.getLevel().getHead() == orderBookEntry && orderBookEntry.getLevel().getTail() == orderBookEntry) {
                 orderBookEntry.getLevel().setHead(null);
                 orderBookEntry.getLevel().setTail(null);
-                if (order.isBuy()) {
-                    buyLevels.remove(order.getPrice());
-                } else {
-                    sellLevels.remove(order.getPrice());
-                }
             } else if (orderBookEntry.getLevel().getHead() == orderBookEntry) {
                 orderBookEntry.getLevel().setHead(orderBookEntry.getNext());
             } else if (orderBookEntry.getLevel().getTail() == orderBookEntry) {
@@ -57,6 +52,11 @@ public class RemoveOrderCommand implements OrderBookCommand {
 
             for (Order orderEntryToDelete : orderEntriesToDelete) {
                 ordersEntries.remove(orderEntryToDelete);
+                if (order.isBuy()) {
+                    buyLevels.remove(orderEntryToDelete.getPrice());
+                } else {
+                    sellLevels.remove(orderEntryToDelete.getPrice());
+                }
             }
 
             DebugLogger.log(" | REMOVE_ORDER | Order removed from order book: " + order);
