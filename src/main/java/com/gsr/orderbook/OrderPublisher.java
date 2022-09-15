@@ -32,8 +32,10 @@ public class OrderPublisher {
                 String completeMessage = completeMessageBuilder.toString();
                 if (completeMessage.contains("l2update")) {
                     OrderRequest orderRequest = objectMapper.readValue(completeMessage, OrderRequest.class);
-                    orderRequest.changes().forEach(order -> {
+                    System.out.println(orderRequest);
+                    orderRequest.getChanges().forEach(order -> {
                         try {
+                            System.out.println(order);
                             orderQueue.put(order);
                         } catch (InterruptedException e) {
                             System.err.println("Exception: " + e);

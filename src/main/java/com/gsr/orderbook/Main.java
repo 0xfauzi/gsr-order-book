@@ -97,7 +97,6 @@ public class Main implements Runnable {
                 .toAbsolutePath() + FileSystems.getDefault().getSeparator();
         System.out.println("Waiting to get 10 price levels before printing order book...");
         System.out.println("Debug information will be written to: " + logFile + " filename = order-book-logs_{{time}}.txt");
-        new CommandLine(new Main()).execute(args);
-        System.exit(1);
+        System.exit(new CommandLine(new Main()).execute(args));
     }
 }

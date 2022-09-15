@@ -5,12 +5,11 @@ import com.gsr.orderbook.util.BigDecimalUtils;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.UUID;
 
 @JsonFormat(shape = JsonFormat.Shape.ARRAY)
 @JsonPropertyOrder({"type", "price", "quantity"})
 public class Order {
-
-    private static final double EPSILON = 0.0000000001d;
 
     private final String type;
 
@@ -19,6 +18,8 @@ public class Order {
 
     private final BigDecimal quantity;
 
+    private final String orderId;
+
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public Order(@JsonProperty("type") String type,
                  @JsonProperty("price") BigDecimal price,
@@ -26,6 +27,7 @@ public class Order {
         this.type = type;
         this.price = price;
         this.quantity = quantity;
+        this.orderId = UUID.randomUUID().toString();
     }
 
     public boolean isBuy() {
@@ -48,6 +50,10 @@ public class Order {
         return quantity;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,6 +70,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
+                "id='" + orderId + '\'' +
                 "type='" + type + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +

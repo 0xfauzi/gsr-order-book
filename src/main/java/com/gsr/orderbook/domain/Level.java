@@ -7,8 +7,6 @@ import java.util.*;
 
 public class Level {
 
-    private static final double EPSILON = 0.0000000001d;
-
     private final BigDecimal price;
     private OrderBookEntry head;
     private OrderBookEntry tail;
