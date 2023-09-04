@@ -1,6 +1,6 @@
 # Order Book
 
-[![Java CI with Maven](https://github.com/0xfauzi/order-book/actions/workflows/maven.yml/badge.svg)](https://github.com/0xfauzi/order-book/actions/workflows/maven.yml)
+
 
 A basic implementation of an order book.
 
